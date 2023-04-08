@@ -36,7 +36,7 @@ function multiply(a, b) { //eslint-disable-line
 }
 
 // Here is the test for multiply(); uncomment it to run it
-testMultiply(5,9);
+testMultiply(5, 9);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
@@ -53,15 +53,15 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
-  let firstSum = sum (a, b)[0];
+  let firstSum = sum(a, b)[0];
   let finalSum = sum(firstSum, c)[0];
-  let firstP = multiply (a, b)[0];
-  let finalP = multiply (firstP, c)[0];
+  let firstP = multiply(a, b)[0];
+  let finalP = multiply(firstP, c)[0];
   return [finalSum, finalP, `${a} and ${b} and ${c} sum to ${finalSum}.`, `The product of ${a} and ${b} and ${c} is ${finalP}.`];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
-testSumAndMultiply(4,7,5);
+testSumAndMultiply(4, 7, 5);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
@@ -102,8 +102,8 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-  let productA = multiply (testArray[0], testArray[1])[0];
-  let productB = multiply (productA, testArray[2])[0];
+  let productA = multiply(testArray[0], testArray[1])[0];
+  let productB = multiply(productA, testArray[2])[0];
   return [productB, `The numbers ${testArray[0]},${testArray[1]},${testArray[2]} have a product of ${productB}.`];
 }
 
@@ -118,7 +118,7 @@ testMultiplyArray(testArray);
 
 /////////////////////////////////////
 /* STRETCH GOAL: Problem 6
-Write a function called multiplyAnyArray() that takes an array of numbers of any length as its argument and returns an array whose first element is the product of those numbers, and the second element is a string that EXACTLY follows this example and concatenates a message using the arguments that were passed into the function:
+xWrite a function called multiplyAnyArray() that takes an array of numbers of any length as its argument and returns an array whose first element is the product of those numbers, and the second element is a string that EXACTLY follows this example and concatenates a message using the arguments that were passed into the function:
 
 "The numbers 1,2,3,4,5 have a product of 120."
 
@@ -129,13 +129,24 @@ This function should be dynamic, accepting an array of any length.
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testMultiplyAnyArray() function and see if the test passes.*/
 
 // Write your code here
-let testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
+let testDynamicArray = [1, 2, 3, 4, 5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
-
+  let message = "";
+  let pSoFar = 1;
+  for (let i = 0; i < dynamicArray.length; i++) {
+    pSoFar = multiply(dynamicArray[i], pSoFar)[0];
+    message += dynamicArray[i];
+    if(i < dynamicArray.length -1) {
+      message += ",";
+    }
+  }
+  console.log(pSoFar);
+  console.log(message);
+  return [pSoFar, `The numbers ${message} have a product of ${pSoFar}.`];
 }
 
+console.log(multiplyAnyArray(testDynamicArray));
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyAnyArray(testDynamicArray);
-
+testMultiplyAnyArray(testDynamicArray);
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. You're done! Submit the link to the repo following the instructions in Canvas.
